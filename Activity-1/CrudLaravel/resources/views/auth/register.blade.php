@@ -4,12 +4,12 @@
             <x-authentication-card-logo />
         </x-slot>
 
-        <x-validation-errors class="mb-4" />
+        <x-validation-errors class="mb-5" />
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
+            <div class="mt-4">
                 <x-label for="name" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
@@ -20,6 +20,32 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="lastnames" value="{{ __('lastnames') }}" />
+                <x-input id="lastnames" class="block mt-1 w-full" type="text" name="lastnames" :value="old('lastnames')" required autofocus autocomplete="lastnames" />
+            </div>
+
+
+            <div class="mt-4">
+                <x-label for="phone" value="{{ __('Phone') }}" />
+                 <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+             </div>
+
+            <div class="mt-4">
+                <x-label for="address" value="{{ __('address') }}" />
+                 <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus autocomplete="address" />
+             </div>
+
+             <div class="mt-4 br-4 d-flex "> 
+                <select name="gender" aria-label="Choose your gender" class="text-primary ml-4">
+                    <option selected class="text-primary">Gender</option>
+                    <option value="male" class="text-primary">Male</option>
+                    <option value="female" class="text-primary">Female</option>
+                    <option value="other" class="text-primary">Other</option>
+                </select>
+            </div>
+
+
+            <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
@@ -28,7 +54,6 @@
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
-
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">
