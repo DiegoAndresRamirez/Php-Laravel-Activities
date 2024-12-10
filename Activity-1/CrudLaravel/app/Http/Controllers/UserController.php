@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -58,15 +59,30 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $countries = Country::all();
+        return view('users.edit', compact('user', 'countries'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'lastnames' => 'required|string|max:255',
+            'email'=> 'required|email',
+            'gender'=> 'required|string',
+            'phone'=> 'required|string',
+            'address'=> 'required|string',
+            'country_id'=> 'required|integer',
+            ]);
+
+        $user->update($data);
+
+        return redirect()->route('dashboard');
+
     }
 
     /**

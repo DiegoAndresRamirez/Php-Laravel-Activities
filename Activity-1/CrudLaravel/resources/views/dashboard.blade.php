@@ -31,8 +31,8 @@
                                 <td>{{ $user->gender}}</td>
                                 <td>{{ $user->country->name}}</td>
                                 <td>
-                                    <button class="btn btn-secondary">Detalles</button>
-                                    <button class="btn btn-primary">Editar</button>
+                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-secondary">Detalles</a>
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Editar</a>
                                     <button class="btn btn-danger">Eliminar</button>
                                 </td>
                             </tr>

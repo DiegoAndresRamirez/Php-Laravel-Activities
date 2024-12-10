@@ -26,7 +26,11 @@ Route::middleware(['auth'])->group(function () {
         return view('users.create')->with(['countries' => $countries]);
     })->name('users.create');
 
-    Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
+    Route::post('/guardar', [UserController::class, 'store'])->name('users.store');
+    Route::put('/usuarios/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/usuarios/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+
+    Route::get('/usuarios/{user}/detalles', [UserController::class, 'show'])->name('users.show');
         
 });
 

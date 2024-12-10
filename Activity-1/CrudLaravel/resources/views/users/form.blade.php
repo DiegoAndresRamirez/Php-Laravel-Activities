@@ -3,6 +3,9 @@
     @if(isset($method) && $method === 'PUT')
         @method('PUT')
     @endif
+    <div class="d-grid w-25 gap-5">
+        <a href="{{ route('dashboard') }}" class="btn btn-secondary">Volver</a>
+    </div>
     <div class="mb-3">
         <label for="name" class="form-label">Nombres</label>
         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name ?? '') }}">
