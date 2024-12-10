@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +22,12 @@ Route::middleware([
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/crear-usuario', function () {
-        return view('users.create');
+        $countries = Country::all();
+        return view('users.create')->with(['countries' => $countries]);
     })->name('users.create');
+
+    Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
+        
 });
 
 Route::get('/scrape-countries', function () {
